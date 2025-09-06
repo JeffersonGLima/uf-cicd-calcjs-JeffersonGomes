@@ -24,7 +24,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Passo 4: Rodar os testes unitários
+      # Passo 4: Rodar análise de código com SonarCloud
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      # Passo 5: Rodar os testes unitários
       - name: Run tests
         run: npm test
 
